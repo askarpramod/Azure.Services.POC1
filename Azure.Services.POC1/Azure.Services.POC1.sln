@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceBusQueue", "ServiceBusQueue", "{91488C5F-B713-4494-A406-91482E87787C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceBusTopic", "ServiceBusTopic", "{2FFDBED3-4B5F-4BC9-8628-F84D7F9FE2A5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AzureFunction", "AzureFunction", "{5F58DA8E-F28E-487D-B30C-310425678F92}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceBus.Queue.SendMessage", "ServiceBus.Queue.SendMessage\ServiceBus.Queue.SendMessage.csproj", "{65650B05-694D-49D4-B251-BC344EBD85AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceBus.Queue.Reader", "ServiceBus.Queue.Reader\ServiceBus.Queue.Reader.csproj", "{24536CC2-E1EF-4BF2-A07C-5BE1DE24D7F5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{65650B05-694D-49D4-B251-BC344EBD85AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65650B05-694D-49D4-B251-BC344EBD85AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65650B05-694D-49D4-B251-BC344EBD85AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65650B05-694D-49D4-B251-BC344EBD85AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24536CC2-E1EF-4BF2-A07C-5BE1DE24D7F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24536CC2-E1EF-4BF2-A07C-5BE1DE24D7F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24536CC2-E1EF-4BF2-A07C-5BE1DE24D7F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24536CC2-E1EF-4BF2-A07C-5BE1DE24D7F5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{65650B05-694D-49D4-B251-BC344EBD85AA} = {91488C5F-B713-4494-A406-91482E87787C}
+		{24536CC2-E1EF-4BF2-A07C-5BE1DE24D7F5} = {91488C5F-B713-4494-A406-91482E87787C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9375935F-43B4-4C9B-A711-369B112745CF}
+	EndGlobalSection
+EndGlobal
