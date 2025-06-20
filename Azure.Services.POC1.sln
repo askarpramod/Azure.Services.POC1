@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceBusQueue", "ServiceBusQueue", "{91488C5F-B713-4494-A406-91482E87787C}"
+	ProjectSection(SolutionItems) = preProject
+		..\Azure.Services.POC1V2\Azure.Services.POC1\README.md = ..\Azure.Services.POC1V2\Azure.Services.POC1\README.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceBusTopic", "ServiceBusTopic", "{2FFDBED3-4B5F-4BC9-8628-F84D7F9FE2A5}"
 EndProject
@@ -19,9 +22,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.OrderSubscriber.R
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{0F62F950-42B4-483A-9EB8-CB6A74587A17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Employee.Management.Common.Api", "Employee.Management.Common.Api\Employee.Management.Common.Api.csproj", "{D35DBCA4-B0FE-4720-9004-C2EDFF0BADFD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Employee.Management.Common.Api", "Employee.Management.Common.Api\Employee.Management.Common.Api.csproj", "{D35DBCA4-B0FE-4720-9004-C2EDFF0BADFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureFunction.ServiceBusTrigger.HighPriorityOrderProcessor", "AzureFunction.ServiceBusTrigger.HighPriorityOrderProcessor\AzureFunction.ServiceBusTrigger.HighPriorityOrderProcessor.csproj", "{B6B64CC0-202D-42CE-B8B2-7FC64A44FF19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureFunction.ServiceBusTrigger.HighPriorityOrderProcessor", "AzureFunction.ServiceBusTrigger.HighPriorityOrderProcessor\AzureFunction.ServiceBusTrigger.HighPriorityOrderProcessor.csproj", "{B6B64CC0-202D-42CE-B8B2-7FC64A44FF19}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
