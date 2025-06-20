@@ -45,3 +45,59 @@ var config = new ConfigurationBuilder()
 string connStr = config["ServiceBusConnectionString"]; // Loaded from Key Vault
 
 var client = new ServiceBusClient(connStr);
+
+
+# 4. appsettings.json cachesettings.json
+var builder = WebApplication.CreateBuilder(args);
+    var configuration = new ConfigurationBuilder()
+                .SetBasePath(builder.Environment.ContentRootPath)
+                .AddJsonFile("cachesettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"cachesettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true)
+                .AddEnvironmentVariables()
+                .Build();
+
+
+# 5. Rate limiter
+
+#region Rate Limter
+    var ratelimitInterval = Convert.ToInt32(configuration["RateLimiter:TimeInterval"]);
+    var ratelimitMaxRequestAllowed = Convert.ToInt32(configuration["RateLimiter:MaxRequestAllowed"]);
+    builder.Services.AddRateLimiter(options =>
+    {
+        options.OnRejected = async (context, token) =>
+        {
+            context.HttpContext.Response.StatusCode = 429;
+            await context.HttpContext.Response.WriteAsync("Too many requests. Please try later again... ", cancellationToken: token);
+        };
+        options.AddPolicy(ratelimiterpolicy, context => RateLimitPartition.GetFixedWindowLimiter(
+        partitionKey: context.Request.HttpContext.Connection?.RemoteIpAddress?.ToString(),
+        factory: partition => new FixedWindowRateLimiterOptions
+        {
+            AutoReplenishment = true,
+            PermitLimit = ratelimitMaxRequestAllowed,
+            QueueLimit = 0,
+            Window = TimeSpan.FromSeconds(ratelimitInterval)
+        }));
+
+    });
+
+    #endregion
+
+
+# 6. Multiple implementation of the service
+#region Caching Setup
+    builder.Services.Configure<CacheSettings>(configuration.GetSection("CacheSettings"));
+
+    if (enableDapr)
+    {
+        builder.Services.AddDaprClient();
+        builder.Services.AddScoped<ICacheService, CacheServiceDapr>();
+    }
+    else
+    {
+        builder.Services.AddMemoryCache();
+        builder.Services.AddScoped<ICacheService, CacheServiceMemory>();
+    }
+    #endregion
