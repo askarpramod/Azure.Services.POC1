@@ -1,0 +1,43 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "resources": [
+    {
+      "type": "Microsoft.ServiceBus/namespaces",
+      "apiVersion": "2023-01-01-preview",
+      "name": "[parameters('namespaceName')]",
+      "location": "[resourceGroup().location]",
+      "sku": {
+        "name": "Standard",
+        "tier": "Standard"
+      },
+      "properties": {}
+    },
+    {
+      "type": "Microsoft.ServiceBus/namespaces/topics",
+      "apiVersion": "2023-01-01-preview",
+      "name": "[format('{0}/{1}', parameters('namespaceName'), 'orders-topic')]",
+      "dependsOn": [ "[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaceName'))]" ],
+      "properties": {}
+    },
+    {
+      "type": "Microsoft.ServiceBus/namespaces/topics/subscriptions",
+      "apiVersion": "2023-01-01-preview",
+      "name": "[format('{0}/orders-topic/high-priority-orders', parameters('namespaceName'))]",
+      "dependsOn": [ "[resourceId('Microsoft.ServiceBus/namespaces/topics', parameters('namespaceName'), 'orders-topic')]" ],
+      "properties": {}
+    },
+    {
+      "type": "Microsoft.ServiceBus/namespaces/topics/subscriptions",
+      "apiVersion": "2023-01-01-preview",
+      "name": "[format('{0}/orders-topic/low-priority-orders', parameters('namespaceName'))]",
+      "dependsOn": [ "[resourceId('Microsoft.ServiceBus/namespaces/topics', parameters('namespaceName'), 'orders-topic')]" ],
+      "properties": {}
+    }
+  ],
+  "parameters": {
+    "namespaceName": {
+      "type": "string"
+    }
+  }
+}
